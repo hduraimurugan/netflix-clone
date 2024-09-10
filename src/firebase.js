@@ -3,8 +3,6 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } f
 import { addDoc, collection, getFirestore } from "firebase/firestore/lite";
 import { toast } from "react-toastify";
 
-
-
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
     authDomain: "netflix-clone-39a8c.firebaseapp.com",
@@ -30,6 +28,8 @@ const signup = async (name, email, password) => {
             authProvider: "local",
             email
         })
+        // setUser({ name, email });
+        toast.success("Signed Up Successfully");
     }
     catch (error) {
         console.log(error);
@@ -39,7 +39,11 @@ const signup = async (name, email, password) => {
 
 const login = async (email, password) => {
     try {
-          await signInWithEmailAndPassword(auth, email, password);
+        const res =await signInWithEmailAndPassword(auth, email, password);
+          const user = res.user;
+        // Assume you have stored user names in Firestore and retrieve them here.
+        const userName = user.displayName || email.split('@')[0]; // Example way to handle names.
+        // setUser({ name: userName, email });
           toast.success("Logged In Successfully")
     }
     catch (error) {
@@ -50,6 +54,7 @@ const login = async (email, password) => {
 
 const logout = () => {
     auth.signOut(auth);
+    // setUser(null);
     toast.error("Logged out")
 };
 

@@ -1,20 +1,20 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import search_icon from '../../assets/search_icon.svg'
 import bell_icon from '../../assets/bell_icon.svg'
 import profile_img from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
-import { logout } from '../../firebase'
+import { auth, logout } from '../../firebase'
 import { Link } from 'react-router-dom'
 import { useContentStore } from '../../store/content'
+import { onAuthStateChanged } from 'firebase/auth'
 
 
 const Navbar = () => {
 
     const { contentType, setContentType } = useContentStore()
-    
-
+    const [user, setUser] = useState(null); 
     const navRef = useRef()
 
     useEffect(() => {
@@ -31,6 +31,21 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                setUser({
+                    name: currentUser.displayName || currentUser.email.split('@')[0],
+                    email: currentUser.email
+                });
+            } else {
+                setUser(null);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     return (
         <div ref={navRef} className='navbar'>
@@ -56,7 +71,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-right">
                 <img src={search_icon} alt="" className='icons' />
-                <p>Children</p>
+                <p>{user? user.name : "user"}</p>
                 <img src={bell_icon} alt="" className='icons' />
                 <div className="navbar-profile">
                     <img src={profile_img} alt="" className='profile' />
