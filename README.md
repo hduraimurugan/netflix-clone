@@ -7,7 +7,7 @@ Responsive UI resembling Netflix.<br/>
 Browse movies and TV shows from different categories.<br/> 
 Fetch and display movie posters, descriptions, and trailers using TMDB API.<br/> 
 Dynamic home screen with featured movies.<br/> 
-Search functionality to find specific titles.<br/> <br/> 
+
 ## Tech Stack<br/> 
 Frontend: React, JavaScript, CSS<br/> 
 Backend: Firebase (Authentication)<br/> 
