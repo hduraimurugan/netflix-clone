@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import search_icon from '../../assets/search_icon.svg'
@@ -13,7 +13,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 
 const Navbar = () => {
 
-    const { contentType, setContentType } = useContentStore()
+    const { setContentType } = useContentStore()
     const [user, setUser] = useState(null); 
     const navRef = useRef()
 

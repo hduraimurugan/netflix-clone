@@ -39,12 +39,13 @@ const signup = async (name, email, password) => {
 
 const login = async (email, password) => {
     try {
-        const res =await signInWithEmailAndPassword(auth, email, password);
-          const user = res.user;
+         await signInWithEmailAndPassword(auth, email, password);
+        // const user = res.user;
+
         // Assume you have stored user names in Firestore and retrieve them here.
-        const userName = user.displayName || email.split('@')[0]; // Example way to handle names.
+        // const userName = user.displayName || email.split('@')[0]; // Example way to handle names.
         // setUser({ name: userName, email });
-          toast.success("Logged In Successfully")
+        toast.success("Logged In Successfully")
     }
     catch (error) {
         console.log(error);
@@ -52,9 +53,9 @@ const login = async (email, password) => {
     }
 };
 
-const logout = () => {
-    auth.signOut(auth);
+const logout = async() => {
     // setUser(null);
+    await auth.signOut(auth);
     toast.error("Logged out")
 };
 

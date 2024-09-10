@@ -6,9 +6,9 @@ import Player from './pages/Player/Player'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
 import { auth } from './firebase'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './components/Navbar/Navbar'
+// import Navbar from './components/Navbar/Navbar'
 import TvShows from './pages/tv_shows/TvShows'
 import Movies from './pages/movies/Movies'
 import PlayerTv from './pages/Player/PlayerTv'
