@@ -18,17 +18,19 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("user logged in")
-        navigate('/')
+        console.log("user logged in");
+        navigate('/');
+      } else {
+        console.log("user not logged in");
+        navigate('/login');
       }
-      else {
-        console.log("user not logged in")
-        navigate('/login')
-      }
-    })
-  }, [])
+    });
+
+    // Cleanup function to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, [auth]);
 
   return (
     <>
