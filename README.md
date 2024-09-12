@@ -1,6 +1,9 @@
 # Netflix Clone
 A full-stack Netflix clone built using React, Firebase, and TMDB API to mimic the core functionalities of the popular streaming platform. This project includes user authentication and dynamic movie data fetched from TMDB API.
 
+
+![Netflix Clone Login Page](https://github.com/user-attachments/assets/7a464d7e-1f9b-431e-b00b-4bf1e441c4e0)
+
 ![Netflix Clone App](https://github.com/user-attachments/assets/9fa37ac7-d916-4f9c-ab6d-33a68b751753)
 
 ## Features
